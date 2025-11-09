@@ -1,0 +1,5 @@
+{
+  "name": "vvv",
+  "description": "A sleek, animated, and dynamic portfolio website for a creative developer, built with React, TypeScript, and Tailwind CSS. Features include page transitions, project filtering, and a CMS-like data structure.",
+  "requestFramePermissions": []
+}
