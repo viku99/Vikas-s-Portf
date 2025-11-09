@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
 import { Project } from '../types';
 
@@ -25,7 +25,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         whileHover={{ y: -8 }}
         transition={{ duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] }}
     >
-      <Link to={`/portfolio/${project.id}`} className="block bg-surface rounded-lg overflow-hidden border border-line-color hover:border-accent/50 transition-colors duration-300 h-full shadow-md">
+      <Link href={`/portfolio/${project.id}`} className="block bg-surface rounded-lg overflow-hidden border border-line-color hover:border-accent/50 transition-colors duration-300 h-full shadow-md">
         <div className="relative">
           <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover" />
           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

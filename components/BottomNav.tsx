@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const HomeIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -33,21 +34,25 @@ const navLinks = [
 ];
 
 const BottomNav: React.FC = () => {
-  const navLinkClasses = ({ isActive }: { isActive: boolean }) =>
-    `flex flex-col items-center justify-center gap-1 p-2 flex-1 transition-colors duration-300 ${
+  const router = useRouter();
+
+  const getNavLinkClasses = (path: string, exact: boolean = false) => {
+    const isActive = exact ? router.pathname === path : router.pathname.startsWith(path);
+    return `flex flex-col items-center justify-center gap-1 p-2 flex-1 transition-colors duration-300 ${
       isActive
         ? 'text-accent'
         : 'text-muted-text hover:text-text'
     }`;
+  }
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 h-20 bg-surface/95 backdrop-blur-sm border-t border-line-color md:hidden">
       <div className="w-full h-full max-w-md mx-auto flex justify-around items-center">
         {navLinks.map((link) => (
-          <NavLink key={link.name} to={link.path} className={navLinkClasses} end={link.path === '/'}>
+          <Link key={link.name} href={link.path} className={getNavLinkClasses(link.path, link.path === '/')}>
             {link.icon}
             <span className="text-xs font-medium">{link.name}</span>
-          </NavLink>
+          </Link>
         ))}
       </div>
     </nav>
